@@ -70,6 +70,7 @@ typedef struct {
     bool cheat_beetle;   // the Beetle's flight timer never runs out (tools/patches.py BEETLE_TIMER_SITE)
     bool cheat_dash;     // the Loftwing's dashes are never used up (tools/patches.py DASH_USE_SITE)
     bool cheat_skyward;  // the sword stays charged with a Skyward Strike (runtime/ui/cheats.mm)
+    bool cheat_hylian_shield; // Hylian Shield kept in the first shield slot
     bool cheat_hookshot; // hookshot latches onto any surface (Gameplay tab; runtime/hle/hookshot.c; seeds made with it: always)
     bool no_buff_drops;  // no Guardian Acorns / Pieces of Power (Gameplay tab; runtime/hle/qol.c; seeds made with it: always)
     // difficulty (runtime/ui/difficulty.mm)

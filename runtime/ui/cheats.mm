@@ -20,6 +20,7 @@ extern "C" {
 
 #define SAVE_HEALTH 0x7005AF0056ull  // u16 heart capacity, u16 (unused), u16 current health: quarter hearts
 #define SAVE_RUPEES 0x7005AEB7B2ull  // u16
+#define HYLIAN_SHIELD 0x7005AEB51Cull
 static volatile uint16_t &U16(uint64_t a) { return *(volatile uint16_t *)(uintptr_t)a; }
 #define PLAYER 0x7001826AD0ull         // dAcPy_c * (Link), null without him
 #define PLAYER_VTABLE 0x7001637D28ull  // its vtable (main+0xab3c2c sets it)
@@ -57,6 +58,7 @@ extern "C" void cheats_frame(void) {
     if (!save) return;
     if (g_settings.cheat_hearts && hp > 0 && hp < cap) U16(SAVE_HEALTH + 4) = cap;  // (0 = defeated: left alone)
     if (g_settings.cheat_rupees && U16(SAVE_RUPEES) < 9900) U16(SAVE_RUPEES) = 9900;
+    if (g_settings.cheat_hylian_shield) *(volatile uint32_t *)(uintptr_t)HYLIAN_SHIELD = 0x0030007D;
 }
 
 extern "C" void cheats_draw(float scale) {
@@ -83,6 +85,9 @@ extern "C" void cheats_draw(float scale) {
     if (opt_toggle("Enemies always drop items", &g_settings.drop_always, false,
                    "Defeated enemies, grass and pots always drop something from what they can drop, and enemies "
                    "always drop their monster materials. Drops turned off in the Gameplay tab stay off."))
+        settings_save();
+    if (opt_toggle("Hylian Shield", &g_settings.cheat_hylian_shield, false,
+               "Keeps a fully repaired Hylian Shield in your inventory."))
         settings_save();
     opt_end();
 }

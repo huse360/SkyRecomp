@@ -274,6 +274,7 @@ void settings_load(void) {
         else if (!strcmp(key, "flight_speed")) g_settings.flight_speed = (float)atof(val);
         else if (!strcmp(key, "walk_speed")) g_settings.walk_speed = (float)atof(val);
         else if (!strcmp(key, "cheat_skyward")) g_settings.cheat_skyward = atoi(val) != 0;
+        else if (!strcmp(key, "cheat_hylian_shield")) g_settings.cheat_hylian_shield = atoi(val) != 0;
         else if (!strcmp(key, "drop_hearts")) g_settings.drop_hearts = atoi(val) != 0;
         else if (!strcmp(key, "drop_rupees")) g_settings.drop_rupees = atoi(val) != 0;
         else if (!strcmp(key, "drop_ammo")) g_settings.drop_ammo = atoi(val) != 0;
@@ -355,7 +356,8 @@ void settings_save(void) {
             g_settings.cheat_stamina, g_settings.cheat_rupees, g_settings.cheat_beetle);
     fprintf(f, "cheat_dash = %d\ndash_max = %d\nflight_speed = %.2f\n", g_settings.cheat_dash, g_settings.dash_max,
             g_settings.flight_speed);
-    fprintf(f, "walk_speed = %.2f\ncheat_skyward = %d\n", g_settings.walk_speed, g_settings.cheat_skyward);
+    fprintf(f, "walk_speed = %.2f\ncheat_skyward = %d\ncheat_hylian_shield = %d\n",
+        g_settings.walk_speed, g_settings.cheat_skyward, g_settings.cheat_hylian_shield);
     fprintf(f, "drop_hearts = %d\ndrop_rupees = %d\ndrop_ammo = %d\ndrop_treasures = %d\ndrop_always = %d\n",
             g_settings.drop_hearts, g_settings.drop_rupees, g_settings.drop_ammo, g_settings.drop_treasures,
             g_settings.drop_always);
